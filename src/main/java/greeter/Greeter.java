@@ -1,18 +1,23 @@
 package greeter;
 
+import java.util.Map;
+
 public class Greeter {
-    String formality;
+    private final Map<String, Greeting> greetings;
+    private final Greeting defaultGreeting;
+    private String formality;
+
+    public Greeter() {
+        this(GreetingRegistry.defaults(), new DefaultGreeting());
+    }
+
+    public Greeter(Map<String, Greeting> greetings, Greeting defaultGreeting) {
+        this.greetings = greetings;
+        this.defaultGreeting = defaultGreeting;
+    }
 
     public String greet() {
-        if (this.formality == "formal") {
-            return "Good evening, sir.";
-        } else if (this.formality == "casual") {
-            return "Sup bro?";
-        } else if (this.formality == "intimate") {
-            return "Hello Darling!";
-        } else {
-            return "Hello.";
-        }
+        return this.greetings.getOrDefault(this.formality, this.defaultGreeting).greet();
     }
 
     public void setFormality(String formality) {
