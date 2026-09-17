@@ -8,4 +8,8 @@ public class Studio extends Apartment {
     public void setSquareFootage(int sqft) {
         this.squareFootage = sqft;
     }
+
+    void addBedroom() {
+        // Studios have no bedrooms to add.
+    }
 }
